@@ -1,0 +1,100 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-car",
+      "description": "A sleek, red sports car in a dark, moody garage environment.",
+      "imageUrl": "https://images.unsplash.com/photo-1506610654-064fbba4780c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzcG9ydHMlMjBjYXJ8ZW58MHx8fHwxNzY2MzM5NzUwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sports car"
+    },
+    {
+      "id": "turbocharger",
+      "description": "High-performance turbocharger.",
+      "imageUrl": "https://images.unsplash.com/photo-1598859159221-1fffc50b4932?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2FyJTIwcGFydHxlbnwwfHx8fDE3NjYzNTE0NjJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "car part"
+    },
+    {
+      "id": "brake-kit",
+      "description": "Performance brake kit with red calipers.",
+      "imageUrl": "https://images.unsplash.com/photo-1707406766955-c99768ee2fd8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2FyJTIwYnJha2VzfGVufDB8fHx8MTc2NjM1MTQ2Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "car brakes"
+    },
+    {
+      "id": "suspension-kit",
+      "description": "Adjustable coilover suspension kit.",
+      "imageUrl": "https://images.unsplash.com/photo-1590342855348-4dc7f6141fdb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2FyJTIwc3VzcGVuc2lvbnxlbnwwfHx8fDE3NjYzNTE0NjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "car suspension"
+    },
+    {
+      "id": "exhaust-system",
+      "description": "Stainless steel performance exhaust system.",
+      "imageUrl": "https://images.unsplash.com/photo-1619255566224-fca5ef4ca1be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjYXIlMjBleGhhdXN0fGVufDB8fHx8MTc2NjM1MTQ2Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "car exhaust"
+    },
+    {
+      "id": "racing-seat",
+      "description": "Carbon fiber racing seat.",
+      "imageUrl": "https://images.unsplash.com/photo-1692204621769-e77d24e25b12?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxyYWNpbmclMjBzZWF0fGVufDB8fHx8MTc2NjM1MTQ2Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "racing seat"
+    },
+    {
+      "id": "steering-wheel",
+      "description": "Alcantara-wrapped racing steering wheel.",
+      "imageUrl": "https://images.unsplash.com/photo-1512206818698-0038a42885fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c3RlZXJpbmclMjB3aGVlbHxlbnwwfHx8fDE3NjYzNTE0NjJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "steering wheel"
+    },
+    {
+      "id": "forged-wheels",
+      "description": "Set of black forged alloy wheels.",
+      "imageUrl": "https://images.unsplash.com/photo-1604505024097-892b108c0974?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhbGxveSUyMHdoZWVsc3xlbnwwfHx8fDE3NjYzNTE0NjJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "alloy wheels"
+    },
+    {
+      "id": "intake-system",
+      "description": "Cold air intake system with a large filter.",
+      "imageUrl": "https://images.unsplash.com/photo-1436473849883-bb3464c23e93?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhaXIlMjBmaWx0ZXJ8ZW58MHx8fHwxNzY2Mjc5NDgzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "air filter"
+    },
+    {
+      "id": "brand-a-logo",
+      "description": "Logo for brand 'Apex Performance'",
+      "imageUrl": "https://images.unsplash.com/photo-1765978856539-b9247f2e0d5f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxsb2dvJTIwdHlwb2dyYXBoeXxlbnwwfHx8fDE3NjYzMDExODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "logo typography"
+    },
+    {
+      "id": "brand-b-logo",
+      "description": "Logo for brand 'Nitro Drive'",
+      "imageUrl": "https://images.unsplash.com/photo-1659123739225-ebc34dbdab0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxsb2dvJTIwdHlwb2dyYXBoeXxlbnwwfHx8fDE3NjYzMDExODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "logo typography"
+    },
+    {
+      "id": "brand-c-logo",
+      "description": "Logo for brand 'ForgeLine'",
+      "imageUrl": "https://images.unsplash.com/photo-1634729020084-106e70838c97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxsb2dvJTIwdHlwb2dyYXBoeXxlbnwwfHx8fDE3NjYzMDExODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "logo typography"
+    },
+    {
+      "id": "brand-d-logo",
+      "description": "Logo for brand 'Velocity Works'",
+      "imageUrl": "https://images.unsplash.com/photo-1621986191859-a88d73c6ed0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxsb2dvJTIwdHlwb2dyYXBoeXxlbnwwfHx8fDE3NjYzMDExODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "logo typography"
+    },
+    {
+      "id": "brand-e-logo",
+      "description": "Logo for brand 'Quantum Racing'",
+      "imageUrl": "https://images.unsplash.com/photo-1634729020084-106e70838c97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxsb2dvJTIwdHlwb2dyYXBoeXxlbnwwfHx8fDE3NjYzMDExODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "logo typography"
+    },
+    {
+      "id": "brand-f-logo",
+      "description": "Logo for brand 'GridLock'",
+      "imageUrl": "https://images.unsplash.com/photo-1506079782370-e0a067a44a1c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxsb2dvJTIwdHlwb2dyYXBoeXxlbnwwfHx8fDE3NjYzMDExODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "logo typography"
+    },
+    {
+      "id": "part-upload-placeholder",
+      "description": "Abstract image of car engine blueprints.",
+      "imageUrl": "https://images.unsplash.com/photo-1568057373106-63057e421d1c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxibHVlcHJpbnQlMjBzY2hlbWF0aWNzfGVufDB8fHx8MTc2NjM1MTQ2Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blueprint schematics"
+    }
+  ]
+}
