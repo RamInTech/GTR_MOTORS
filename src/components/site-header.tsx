@@ -17,6 +17,17 @@ import {
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { useCart } from '@/context/cart-context';
+import { useAuth } from '@/context/AuthContext';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { auth } from '@/lib/firebase';
+import { signOut } from 'firebase/auth';
 import {
   Sheet,
   SheetContent,
@@ -33,6 +44,7 @@ const navLinks = [
 
 export function SiteHeader() {
   const { totalItems } = useCart();
+  const { user } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 w-full bg-[#0b0b0f]/95 backdrop-blur-sm text-white border-b border-white/10">
@@ -136,13 +148,46 @@ export function SiteHeader() {
               </Button>
             </Link>
 
-            <Link href="/account">
-              <Button variant="ghost" size="icon" className="text-gray-200 hover:text-white hover:bg-white/10">
-                <div className="bg-white/10 border border-white/10 rounded p-1">
-                  <span className="font-bold text-xs text-white">IN</span>
-                </div>
-              </Button>
-            </Link>
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="text-gray-200 hover:text-white hover:bg-white/10">
+                    <User className="h-5 w-5" />
+                    <span className="sr-only">Account</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56 bg-[#0b0b0f] border-white/10 text-white">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator className="bg-white/10" />
+                  <DropdownMenuItem className="focus:bg-white/10 focus:text-white cursor-pointer" asChild>
+                    <Link href="/account">Profile</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="focus:bg-white/10 focus:text-white cursor-pointer" asChild>
+                    <Link href="/admin/dashboard">Admin Dashboard</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator className="bg-white/10" />
+                  <DropdownMenuItem
+                    className="text-red-400 focus:bg-white/10 focus:text-red-400 cursor-pointer"
+                    onClick={() => signOut(auth)}
+                  >
+                    Log out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <div className="flex items-center space-x-2">
+                <Link href="/login">
+                  <Button variant="ghost" size="sm" className="text-gray-200 hover:text-white hover:bg-white/10">
+                    <span className="font-medium">Sign In</span>
+                  </Button>
+                </Link>
+                <Link href="/signup">
+                  <Button variant="default" size="sm" className="bg-red-600 hover:bg-red-700 text-white border-0 hidden sm:flex">
+                    <span className="font-medium">Sign Up</span>
+                  </Button>
+                </Link>
+              </div>
+            )}
           </nav>
         </div>
       </div>

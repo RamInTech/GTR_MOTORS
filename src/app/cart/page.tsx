@@ -15,12 +15,12 @@ export default function CartPage() {
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="font-headline text-4xl font-bold">Your Cart</h1>
+        <h1 className="font-headline text-4xl font-bold text-gray-400 drop-shadow-sm">Your Cart</h1>
         {totalItems > 0 && (
           <Button 
             variant="outline" 
             onClick={clearCart}
-            className="border-red-500/50 text-red-500 hover:bg-red-500/10 hover:text-red-400"
+            className="border-red-600 text-red-100 bg-red-500/10 hover:bg-red-500/20 hover:text-white hover:border-red-300"
           >
             <Trash2 className="mr-2 h-4 w-4" />
             Clear Cart

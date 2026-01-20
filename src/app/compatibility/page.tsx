@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { motion } from 'framer-motion';
-import { Sparkles, CheckCircle2 } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 
 export default function CompatibilityPage() {
     return (
@@ -17,16 +17,7 @@ export default function CompatibilityPage() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
-                <div className="absolute -top-12 left-1/2 -translate-x-1/2">
-                    <motion.div
-                        className="flex items-center justify-center w-20 h-20 bg-gradient-to-br from-red-600 to-orange-500 rounded-2xl shadow-xl shadow-red-500/20 rotate-3"
-                        initial={{ rotate: -10, y: -20, opacity: 0 }}
-                        animate={{ rotate: 3, y: 0, opacity: 1 }}
-                        transition={{ delay: 0.2, duration: 0.6 }}
-                    >
-                        <Sparkles className="w-10 h-10 text-white" />
-                    </motion.div>
-                </div>
+
 
                 <div className="text-center mb-10 mt-6">
 

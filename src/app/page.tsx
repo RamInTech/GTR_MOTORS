@@ -16,6 +16,14 @@ import heroBg6 from '@/lib/bg/image6.jpeg';
 import heroBg7 from '@/lib/bg/image7.jpeg';
 import heroBg8 from '@/lib/bg/image8.jpeg';
 import gtrBanner from '@/lib/bg/gtr-banner.png';
+
+import bilsteinLogo from '@/lib/brands/bilstein.jpeg';
+import febiLogo from '@/lib/brands/febi-bilstein.png';
+import lemforderLogo from '@/lib/brands/lemforder.png';
+import lukLogo from '@/lib/brands/luk.jpeg';
+import meyleLogo from '@/lib/brands/meyle-automotive-spare-parts.svg';
+import sachsLogo from '@/lib/brands/sachs.svg';
+
 import { ArrowRight, ChevronRight, ShieldCheck } from 'lucide-react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { EmblaOptionsType } from 'embla-carousel';
@@ -28,6 +36,15 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 
 const heroImages = [heroBg, heroBg1, heroBg2, heroBg3, heroBg4, heroBg5, heroBg6, heroBg7, heroBg8];
+
+const leadingBrands = [
+  { name: 'Bilstein', logo: bilsteinLogo },
+  { name: 'Febi Bilstein', logo: febiLogo },
+  { name: 'Lemforder', logo: lemforderLogo },
+  { name: 'LuK', logo: lukLogo },
+  { name: 'Meyle', logo: meyleLogo },
+  { name: 'Sachs', logo: sachsLogo },
+];
 
 export default function Home() {
   const featuredProducts = products.slice(0, 4);
@@ -67,6 +84,12 @@ export default function Home() {
     { loop: true, align: 'start', dragFree: true },
     [AutoScroll({ speed: 1.5, stopOnInteraction: false, stopOnMouseEnter: false, stopOnFocusIn: false })]
   );
+
+  // ... (remove leadingBrandsRef hook)
+
+  // ...
+
+
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -202,7 +225,7 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            <motion.h2 variants={fadeInUp} className="text-red-400 font-bold text-xl tracking-wider uppercase mb-2">
+            <motion.h2 variants={fadeInUp} className="text-red-500 font-bold text-xl tracking-wider uppercase mb-2">
               Buy Trustworthy Auto Parts
             </motion.h2>
             <motion.h1 variants={fadeInUp} className="font-headline text-3xl md:text-5xl font-bold tracking-tight mb-8 max-w-4xl mx-auto leading-tight text-white drop-shadow-[0_10px_25px_rgba(0,0,0,0.35)]">
@@ -287,7 +310,7 @@ export default function Home() {
         transition={{ duration: 0.8 }}
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(239,68,68,0.08),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(0,0,0,0.04),transparent_30%)]" aria-hidden />
-        <div className="container mx-auto px-2 relative">
+        <div className="container mx-100 px-2 mb-5 relative">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-10">
             <div>
               <h2 className="font-headline text-5xl font-bold text-[#ea580c]">Featured Products</h2>
@@ -309,6 +332,63 @@ export default function Home() {
             {featuredProducts.map((product) => (
               <motion.div key={product.id} variants={fadeInUp} whileHover={{ y: -6 }}>
                 <ProductCard product={product} />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      <CarSeparator />
+
+      {/* Leading Automotive Brands Section */}
+      <motion.section
+        className="relative py-5 pb-10 bg-gradient-to-b from-neutral-900 to-black text-white overflow-hidden"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.03),transparent_60%)]" aria-hidden />
+        <div className="container mx-auto px-4 relative z-10">
+          <h2 className="font-headline text-3xl md:text-4xl font-bold text-center mb-12 drop-shadow-md text-[#ea580c]">
+            Leading Automotive Brands
+            <span className="block text-lg md:text-xl font-normal text-gray-400 mt-2">
+              Precision, Power & Reliability
+            </span>
+          </h2>
+
+          <motion.div
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center justify-items-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={staggerContainer}
+          >
+            {leadingBrands.map((brand, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                className="w-full flex justify-center"
+              >
+                <motion.div
+                  animate={{ y: [0, -15, 0] }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.9, // Stagger effect for the wave
+                  }}
+                  whileHover={{ scale: 1.05, filter: "brightness(1.1)" }}
+                  className="w-full h-32 flex items-center justify-center p-6 bg-gradient-to-br from-gray-400 via-gray-300 to-gray-400 rounded-xl shadow-lg transition-all duration-300 hover:shadow-red-900/20 hover:ring-2 hover:ring-red-500/50 cursor-pointer border border-white/40"
+                >
+                  <Image
+                    src={brand.logo}
+                    alt={brand.name}
+                    width={160}
+                    height={80}
+                    className="object-contain max-h-full w-auto mix-blend-multiply"
+                  />
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>

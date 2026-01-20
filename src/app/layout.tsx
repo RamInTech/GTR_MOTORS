@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Toaster } from '@/components/ui/toaster';
 import { CartProvider } from '@/context/cart-context';
+import { AuthProvider } from '@/context/AuthContext';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import { FloatingActions } from '@/components/floating-actions';
@@ -9,7 +10,7 @@ import { AnimatedBackground } from '@/components/animated-background';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Torque Parts',
+  title: 'GTR MOTORS',
   description: 'High-performance auto parts for enthusiasts.',
 };
 
@@ -33,14 +34,16 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased min-h-screen flex flex-col">
-        <CartProvider>
-          <AnimatedBackground />
-          <SmokeEffect />
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
-          <FloatingActions />
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <AnimatedBackground />
+            <SmokeEffect />
+            <SiteHeader />
+            <main className="flex-1">{children}</main>
+            <SiteFooter />
+            <FloatingActions />
+          </CartProvider>
+        </AuthProvider>
         <Toaster />
       </body>
     </html>
