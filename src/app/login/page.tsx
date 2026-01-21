@@ -24,6 +24,29 @@ export default function LoginPage() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      
+      // Send login notification email
+      try {
+        const response = await fetch("/api/auth/send-login-notification", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            customer_name: email.split("@")[0], // Use email prefix as name
+            device_info: navigator.userAgent.includes("Mobile") ? "Mobile Device" : "Web Browser",
+          }),
+        });
+        
+        if (!response.ok) {
+          console.warn("Failed to send login notification, but login was successful");
+        }
+      } catch (emailError) {
+        console.warn("Email service error:", emailError);
+        // Don't fail login if email fails
+      }
+      
       toast({
         title: "Success",
         description: "Logged in successfully",

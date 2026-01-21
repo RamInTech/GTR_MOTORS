@@ -21,6 +21,7 @@ from .schemas import (
 )
 from .models import ProductDB, BrandDB, OrderDB
 from .razorpay_utils import create_razorpay_order, verify_payment_signature, RAZORPAY_KEY_ID
+from .email_service import send_order_confirmation_email, send_payment_success_email, send_account_created_email, send_login_notification_email
 
 app = FastAPI(title="GTR Motors API", version="0.1.0")
 
@@ -289,6 +290,19 @@ async def verify_payment(
     db.commit()
     db.refresh(order)
     
+    # Send payment confirmation email
+    if order.customer_email:
+        try:
+            send_payment_success_email(
+                to_email=order.customer_email,
+                customer_name=order.customer_name or "Customer",
+                order_id=order.id,
+                payment_id=verification.razorpay_payment_id,
+                amount=order.total
+            )
+        except Exception as e:
+            print(f"Failed to send payment confirmation email: {e}")
+    
     return {
         "success": True,
         "message": "Payment verified successfully",
@@ -296,4 +310,47 @@ async def verify_payment(
         "payment_status": order.payment_status
     }
 
+
+# Email notification endpoints
+@app.post("/api/email/send-account-created")
+def send_account_created(email_data: dict):
+    """Send welcome email when account is created"""
+    try:
+        to_email = email_data.get("to_email")
+        customer_name = email_data.get("customer_name", "Customer")
+        
+        if not to_email:
+            raise HTTPException(status_code=400, detail="to_email is required")
+        
+        send_account_created_email(to_email, customer_name)
+        
+        return {
+            "success": True,
+            "message": "Account creation email sent successfully"
+        }
+    except Exception as e:
+        print(f"Error sending account created email: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/email/send-login-notification")
+def send_login_notification(email_data: dict):
+    """Send login notification email"""
+    try:
+        to_email = email_data.get("to_email")
+        customer_name = email_data.get("customer_name", "Customer")
+        device_info = email_data.get("device_info", "Web Browser")
+        
+        if not to_email:
+            raise HTTPException(status_code=400, detail="to_email is required")
+        
+        send_login_notification_email(to_email, customer_name, device_info=device_info)
+        
+        return {
+            "success": True,
+            "message": "Login notification email sent successfully"
+        }
+    except Exception as e:
+        print(f"Error sending login notification email: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 

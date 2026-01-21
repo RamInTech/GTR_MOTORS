@@ -24,9 +24,31 @@ export default function SignupPage() {
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
+      
+      // Send welcome email
+      try {
+        const response = await fetch("/api/auth/send-welcome-email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            customer_name: email.split("@")[0], // Use email prefix as name
+          }),
+        });
+        
+        if (!response.ok) {
+          console.warn("Failed to send welcome email, but account was created");
+        }
+      } catch (emailError) {
+        console.warn("Email service error:", emailError);
+        // Don't fail signup if email fails
+      }
+      
       toast({
         title: "Success",
-        description: "Account created successfully",
+        description: "Account created successfully! Check your email for a welcome message.",
       });
       router.push("/");
     } catch (error: any) {
