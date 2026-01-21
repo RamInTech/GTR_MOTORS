@@ -66,7 +66,7 @@ export const products: Product[] = [
     rating: 4.6,
     reviewCount: 62,
     discount: 12,
-    ...findImage('bucket-seats')
+    ...findImage('racing-seat')
   },
   {
     id: 'prod_6',
@@ -77,6 +77,7 @@ export const products: Product[] = [
     category: 'Interior',
     rating: 4.6,
     reviewCount: 88,
+    discount: 8,
     ...findImage('steering-wheel')
   },
   {
@@ -88,6 +89,7 @@ export const products: Product[] = [
     category: 'Exterior',
     rating: 4.8,
     reviewCount: 62,
+    discount: 10,
     ...findImage('forged-wheels')
   },
   {
@@ -99,6 +101,7 @@ export const products: Product[] = [
     category: 'Engine',
     rating: 4.5,
     reviewCount: 210,
+    discount: 5,
     ...findImage('intake-system')
   },
 ];

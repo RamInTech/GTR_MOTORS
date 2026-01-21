@@ -24,7 +24,7 @@ import lukLogo from '@/lib/brands/luk.jpeg';
 import meyleLogo from '@/lib/brands/meyle-automotive-spare-parts.svg';
 import sachsLogo from '@/lib/brands/sachs.svg';
 
-import { ArrowRight, ChevronRight, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ChevronRight, ChevronLeft, ShieldCheck } from 'lucide-react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { EmblaOptionsType } from 'embla-carousel';
 import AutoScroll from 'embla-carousel-auto-scroll';
@@ -47,8 +47,18 @@ const leadingBrands = [
 ];
 
 export default function Home() {
-  const featuredProducts = products.slice(0, 4);
+  const featuredProducts = products.slice(0, 8);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const [emblaRefFeatured, emblaApiFeatured] = useEmblaCarousel({ loop: true, align: 'start' });
+
+  const scrollPrevFeatured = useCallback(() => {
+    if (emblaApiFeatured) emblaApiFeatured.scrollPrev();
+  }, [emblaApiFeatured]);
+
+  const scrollNextFeatured = useCallback(() => {
+    if (emblaApiFeatured) emblaApiFeatured.scrollNext();
+  }, [emblaApiFeatured]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -310,31 +320,55 @@ export default function Home() {
         transition={{ duration: 0.8 }}
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(239,68,68,0.08),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(0,0,0,0.04),transparent_30%)]" aria-hidden />
-        <div className="container mx-100 px-2 mb-5 relative">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-10">
+        <div className="container mx-100 px-4 mb-5 relative">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-10">
             <div>
-              <h2 className="font-headline text-5xl font-bold text-[#ea580c]">Featured Products</h2>
+              <h2 className="font-headline text-5xl font-bold text-red-600">Featured Products</h2>
               <p className="text-sm text-gray-300 mt-1">Curated picks enthusiasts love right now.</p>
             </div>
-            <Link href="/products">
-              <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-white/10 border border-transparent hover:border-white/20">
-                View All <ArrowRight className="ml-2" />
-              </Button>
-            </Link>
+
+            <div className="flex items-center gap-4">
+              <Link href="/products" className="hidden md:block">
+                <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-white/10 border border-transparent hover:border-white/20">
+                  View All <ArrowRight className="ml-2" />
+                </Button>
+              </Link>
+            </div>
           </div>
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={staggerContainer}
-          >
-            {featuredProducts.map((product) => (
-              <motion.div key={product.id} variants={fadeInUp} whileHover={{ y: -6 }}>
-                <ProductCard product={product} />
-              </motion.div>
-            ))}
-          </motion.div>
+
+          <div className="overflow-hidden" ref={emblaRefFeatured}>
+            <div className="flex -ml-4">
+              {featuredProducts.map((product) => (
+                <div key={product.id} className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_25%] pl-4 min-w-0">
+                  <motion.div variants={fadeInUp} whileHover={{ y: -6 }} className="h-full">
+                    <ProductCard product={product} />
+                  </motion.div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Car Indicator Style Navigation */}
+          <div className="flex justify-center items-center gap-12 mt-10">
+            <Button
+              variant="outline"
+              size="icon"
+              className="w-14 h-14 rounded-full bg-black border-2 border-red-700 text-red-600 hover:bg-red-600 hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(220,38,38,0.3)] hover:shadow-[0_0_25px_rgba(220,38,38,0.8)] active:scale-95"
+              onClick={scrollPrevFeatured}
+              aria-label="Previous Slide"
+            >
+              <ChevronLeft className="h-8 w-8" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              className="w-14 h-14 rounded-full bg-black border-2 border-red-700 text-red-600 hover:bg-red-600 hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(220,38,38,0.3)] hover:shadow-[0_0_25px_rgba(220,38,38,0.8)] active:scale-95"
+              onClick={scrollNextFeatured}
+              aria-label="Next Slide"
+            >
+              <ChevronRight className="h-8 w-8" />
+            </Button>
+          </div>
         </div>
       </motion.section>
 
@@ -350,7 +384,7 @@ export default function Home() {
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.03),transparent_60%)]" aria-hidden />
         <div className="container mx-auto px-4 relative z-10">
-          <h2 className="font-headline text-3xl md:text-4xl font-bold text-center mb-12 drop-shadow-md text-[#ea580c]">
+          <h2 className="font-headline text-3xl md:text-4xl font-bold text-center mb-12 drop-shadow-md text-red-600">
             Leading Automotive Brands
             <span className="block text-lg md:text-xl font-normal text-gray-400 mt-2">
               Precision, Power & Reliability

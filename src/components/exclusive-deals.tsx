@@ -55,18 +55,18 @@ export function ExclusiveDeals() {
                 className="w-full container mx-auto px-4"
             >
                 <div className="flex flex-col items-center mb-10">
-                    <h2 className="text-3xl md:text-5xl font-bold text-[#ea580c] mb-2 tracking-tight uppercase">
+                    <h2 className="text-3xl md:text-5xl font-bold text-red-600 mb-2 tracking-tight uppercase">
                         Exclusive Deals
                     </h2>
 
-                    <p className="text-gray-300 text-base md:text-lg mb-8 font-light">
+                    <p className="text-gray-300 text-base md:text-lg mb-6 font-light">
                         Don't miss out on these limited-time offers!
                     </p>
 
-                    <div className="flex gap-4 md:gap-8 justify-center mb-10 bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-sm">
+                    <div className="flex gap-4 md:gap-8 justify-center">
                         {timeBlocks.map((block, index) => (
-                            <div key={block.label} className="flex flex-col items-center min-w-[60px] md:min-w-[80px]">
-                                <div className="text-3xl md:text-5xl font-bold text-[#ea580c] tabular-nums tracking-wider">
+                            <div key={block.label} className="flex flex-col items-center">
+                                <div className="text-4xl md:text-6xl font-bold text-red-600 tabular-nums tracking-wider">
                                     {String(block.value).padStart(2, '0')}
                                 </div>
                                 <div className="text-[10px] md:text-xs text-gray-400 mt-1 font-medium tracking-widest uppercase">
@@ -77,7 +77,7 @@ export function ExclusiveDeals() {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left max-w-6xl mx-auto">
                     {discountedProducts.map((product) => (
                         <ProductCard key={product.id} product={product} />
                     ))}
