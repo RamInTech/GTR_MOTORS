@@ -15,6 +15,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useCart } from '@/context/cart-context';
+import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { Lock, Loader2 } from 'lucide-react';
@@ -42,7 +43,14 @@ declare global {
 
 export default function CheckoutPage() {
   const { cartItems, cartTotal, totalItems, clearCart } = useCart();
+  const { user, loading } = useAuth();
   const router = useRouter();
+
+  useEffect(() => {
+    if (!loading && !user) {
+      router.push('/login');
+    }
+  }, [user, loading, router]);
   const { toast } = useToast();
   const [isProcessing, setIsProcessing] = useState(false);
   const [razorpayLoaded, setRazorpayLoaded] = useState(false);
@@ -67,7 +75,7 @@ export default function CheckoutPage() {
     script.async = true;
     script.onload = () => setRazorpayLoaded(true);
     document.body.appendChild(script);
-    
+
     return () => {
       document.body.removeChild(script);
     };
@@ -311,9 +319,9 @@ export default function CheckoutPage() {
                 </div>
               </CardContent>
             </Card>
-            <Button 
-              type="submit" 
-              size="lg" 
+            <Button
+              type="submit"
+              size="lg"
               className="w-full backdrop-blur-md mt-8 text-lg font-bold bg-red-600 hover:bg-red-700 text-white shadow-lg shadow-red-900/20"
               disabled={isProcessing}
             >

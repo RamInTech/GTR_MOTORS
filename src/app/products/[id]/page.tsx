@@ -9,10 +9,23 @@ import { Separator } from '@/components/ui/separator';
 import { Star, ShoppingCart, Minus, Plus } from 'lucide-react';
 import { useCart } from '@/context/cart-context';
 import { ProductCard } from '@/components/product-card';
+import { useAuth } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
 
 export default function ProductDetailPage({ params }: { params: { id: string } }) {
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
+  const { user } = useAuth();
+  const router = useRouter();
+
+  const handleAddToCart = () => {
+    if (!product) return;
+    if (!user) {
+      router.push('/login');
+      return;
+    }
+    addToCart(product, quantity);
+  };
 
   const product = products.find((p) => p.id === params.id);
 
@@ -91,7 +104,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                 <Plus className="h-4 w-4" />
               </Button>
             </div>
-            <Button size="lg" className="flex-grow" onClick={() => addToCart(product, quantity)}>
+            <Button size="lg" className="flex-grow" onClick={handleAddToCart}>
               <ShoppingCart className="mr-2 h-5 w-5" /> Add to Cart
             </Button>
           </div>

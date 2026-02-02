@@ -8,17 +8,29 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Minus, Plus, Trash2, ArrowRight, ShoppingCart } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
 
 export default function CartPage() {
   const { cartItems, updateQuantity, removeFromCart, cartTotal, totalItems, clearCart } = useCart();
+  const { user } = useAuth();
+  const router = useRouter();
+
+  const handleCheckout = () => {
+    if (!user) {
+      router.push('/login');
+      return;
+    }
+    router.push('/checkout');
+  };
 
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
       <div className="flex justify-between items-center mb-8">
         <h1 className="font-headline text-4xl font-bold text-gray-400 drop-shadow-sm">Your Cart</h1>
         {totalItems > 0 && (
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             onClick={clearCart}
             className="border-red-600 text-red-100 bg-red-500/10 hover:bg-red-500/20 hover:text-white hover:border-red-300"
           >
@@ -109,11 +121,11 @@ export default function CartPage() {
                   <span>Total</span>
                   <span>Rs {(cartTotal + 150).toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
                 </div>
-                <Link href="/checkout" className="w-full block">
-                  <Button size="lg" className="w-full bg-red-600 hover:bg-red-700 text-white border-0">
+                <div className="w-full block">
+                  <Button size="lg" className="w-full bg-red-600 hover:bg-red-700 text-white border-0" onClick={handleCheckout}>
                     Proceed to Checkout <ArrowRight className="ml-2" />
                   </Button>
-                </Link>
+                </div>
               </div>
             </CardContent>
           </Card>

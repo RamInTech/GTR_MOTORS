@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
 import type { Product } from '@/lib/types';
 import { Button } from './ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card';
@@ -17,6 +19,17 @@ export function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
   const fullStars = Math.floor(product.rating);
   const halfStar = product.rating % 1 !== 0;
+
+  const { user } = useAuth();
+  const router = useRouter();
+
+  const handleAddToCart = () => {
+    if (!user) {
+      router.push('/login');
+      return;
+    }
+    addToCart(product, 1);
+  };
 
   return (
     <motion.div
@@ -75,7 +88,7 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
         </CardContent>
         <CardFooter className="p-4 pt-0 bg-[#222]">
-          <Button className="w-full bg-gray-300 text-black hover:bg-red-600 hover:text-white transition-colors" onClick={() => addToCart(product, 1)}>
+          <Button className="w-full bg-gray-300 text-black hover:bg-red-600 hover:text-white transition-colors" onClick={handleAddToCart}>
             <ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart
           </Button>
         </CardFooter>
