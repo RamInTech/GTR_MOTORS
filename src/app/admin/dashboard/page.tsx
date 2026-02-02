@@ -18,7 +18,7 @@ export default function AdminDashboard() {
     }, []);
 
     useEffect(() => {
-        if (!loading && !user) {
+        if (!user || user.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
             router.push("/admin/login");
         }
     }, [user, loading, router]);

@@ -162,9 +162,11 @@ export function SiteHeader() {
                   <DropdownMenuItem className="focus:bg-white/10 focus:text-white cursor-pointer" asChild>
                     <Link href="/account">Profile</Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="focus:bg-white/10 focus:text-white cursor-pointer" asChild>
-                    <Link href="/admin/dashboard">Admin Dashboard</Link>
-                  </DropdownMenuItem>
+                  {user.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL && (
+                    <DropdownMenuItem className="focus:bg-white/10 focus:text-white cursor-pointer" asChild>
+                      <Link href="/admin/dashboard">Admin Dashboard</Link>
+                    </DropdownMenuItem>
+                  )}
                   <DropdownMenuSeparator className="bg-white/10" />
                   <DropdownMenuItem
                     className="text-red-400 focus:bg-white/10 focus:text-red-400 cursor-pointer"
